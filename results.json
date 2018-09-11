@@ -1,0 +1,852 @@
+{
+  "Observation-social-history": {
+    "mean": 0.0,
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "histogram": [
+      {
+        "bin_start": 0,
+        "bin_end": 4,
+        "count": 100
+      }
+    ]
+  },
+  "Observation-therapy": {
+    "mean": 0.0,
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "histogram": [
+      {
+        "bin_start": 0,
+        "bin_end": 4,
+        "count": 100
+      }
+    ]
+  },
+  "Observation-exam": {
+    "mean": 0.0,
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "histogram": [
+      {
+        "bin_start": 0,
+        "bin_end": 4,
+        "count": 100
+      }
+    ]
+  },
+  "Observation": {
+    "mean": 7.93,
+    "median": 1,
+    "min": 0,
+    "max": 262,
+    "histogram": [
+      {
+        "bin_start": 0,
+        "bin_end": 4,
+        "count": 85
+      },
+      {
+        "bin_start": 5,
+        "bin_end": 9,
+        "count": 2
+      },
+      {
+        "bin_start": 10,
+        "bin_end": 14,
+        "count": 3
+      },
+      {
+        "bin_start": 15,
+        "bin_end": 19,
+        "count": 1
+      },
+      {
+        "bin_start": 20,
+        "bin_end": 24,
+        "count": 0
+      },
+      {
+        "bin_start": 25,
+        "bin_end": 29,
+        "count": 1
+      },
+      {
+        "bin_start": 30,
+        "bin_end": 34,
+        "count": 2
+      },
+      {
+        "bin_start": 35,
+        "bin_end": 39,
+        "count": 2
+      },
+      {
+        "bin_start": 40,
+        "bin_end": 44,
+        "count": 0
+      },
+      {
+        "bin_start": 45,
+        "bin_end": 49,
+        "count": 0
+      },
+      {
+        "bin_start": 50,
+        "bin_end": 54,
+        "count": 1
+      },
+      {
+        "bin_start": 55,
+        "bin_end": 59,
+        "count": 0
+      },
+      {
+        "bin_start": 60,
+        "bin_end": 64,
+        "count": 0
+      },
+      {
+        "bin_start": 65,
+        "bin_end": 69,
+        "count": 0
+      },
+      {
+        "bin_start": 70,
+        "bin_end": 74,
+        "count": 1
+      },
+      {
+        "bin_start": 75,
+        "bin_end": 79,
+        "count": 0
+      },
+      {
+        "bin_start": 80,
+        "bin_end": 84,
+        "count": 0
+      },
+      {
+        "bin_start": 85,
+        "bin_end": 89,
+        "count": 0
+      },
+      {
+        "bin_start": 90,
+        "bin_end": 94,
+        "count": 0
+      },
+      {
+        "bin_start": 95,
+        "bin_end": 99,
+        "count": 0
+      },
+      {
+        "bin_start": 100,
+        "bin_end": 104,
+        "count": 0
+      },
+      {
+        "bin_start": 105,
+        "bin_end": 109,
+        "count": 1
+      },
+      {
+        "bin_start": 110,
+        "bin_end": 114,
+        "count": 0
+      },
+      {
+        "bin_start": 115,
+        "bin_end": 119,
+        "count": 0
+      },
+      {
+        "bin_start": 120,
+        "bin_end": 124,
+        "count": 0
+      },
+      {
+        "bin_start": 125,
+        "bin_end": 129,
+        "count": 0
+      },
+      {
+        "bin_start": 130,
+        "bin_end": 134,
+        "count": 0
+      },
+      {
+        "bin_start": 135,
+        "bin_end": 139,
+        "count": 0
+      },
+      {
+        "bin_start": 140,
+        "bin_end": 144,
+        "count": 0
+      },
+      {
+        "bin_start": 145,
+        "bin_end": 149,
+        "count": 0
+      },
+      {
+        "bin_start": 150,
+        "bin_end": 154,
+        "count": 0
+      },
+      {
+        "bin_start": 155,
+        "bin_end": 159,
+        "count": 0
+      },
+      {
+        "bin_start": 160,
+        "bin_end": 164,
+        "count": 0
+      },
+      {
+        "bin_start": 165,
+        "bin_end": 169,
+        "count": 0
+      },
+      {
+        "bin_start": 170,
+        "bin_end": 174,
+        "count": 0
+      },
+      {
+        "bin_start": 175,
+        "bin_end": 179,
+        "count": 0
+      },
+      {
+        "bin_start": 180,
+        "bin_end": 184,
+        "count": 0
+      },
+      {
+        "bin_start": 185,
+        "bin_end": 189,
+        "count": 0
+      },
+      {
+        "bin_start": 190,
+        "bin_end": 194,
+        "count": 0
+      },
+      {
+        "bin_start": 195,
+        "bin_end": 199,
+        "count": 0
+      },
+      {
+        "bin_start": 200,
+        "bin_end": 204,
+        "count": 0
+      },
+      {
+        "bin_start": 205,
+        "bin_end": 209,
+        "count": 0
+      },
+      {
+        "bin_start": 210,
+        "bin_end": 214,
+        "count": 0
+      },
+      {
+        "bin_start": 215,
+        "bin_end": 219,
+        "count": 0
+      },
+      {
+        "bin_start": 220,
+        "bin_end": 224,
+        "count": 0
+      },
+      {
+        "bin_start": 225,
+        "bin_end": 229,
+        "count": 0
+      },
+      {
+        "bin_start": 230,
+        "bin_end": 234,
+        "count": 0
+      },
+      {
+        "bin_start": 235,
+        "bin_end": 239,
+        "count": 0
+      },
+      {
+        "bin_start": 240,
+        "bin_end": 244,
+        "count": 0
+      },
+      {
+        "bin_start": 245,
+        "bin_end": 249,
+        "count": 0
+      },
+      {
+        "bin_start": 250,
+        "bin_end": 254,
+        "count": 0
+      },
+      {
+        "bin_start": 255,
+        "bin_end": 259,
+        "count": 0
+      },
+      {
+        "bin_start": 260,
+        "bin_end": 264,
+        "count": 1
+      }
+    ]
+  },
+  "Condition": {
+    "mean": 0.64,
+    "median": 0,
+    "min": 0,
+    "max": 11,
+    "histogram": [
+      {
+        "bin_start": 0,
+        "bin_end": 4,
+        "count": 93
+      },
+      {
+        "bin_start": 5,
+        "bin_end": 9,
+        "count": 4
+      },
+      {
+        "bin_start": 10,
+        "bin_end": 14,
+        "count": 3
+      }
+    ]
+  },
+  "Observation-survey": {
+    "mean": 0.0,
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "histogram": [
+      {
+        "bin_start": 0,
+        "bin_end": 4,
+        "count": 100
+      }
+    ]
+  },
+  "Encounter": {
+    "mean": 1.51,
+    "median": 0,
+    "min": 0,
+    "max": 55,
+    "histogram": [
+      {
+        "bin_start": 0,
+        "bin_end": 4,
+        "count": 91
+      },
+      {
+        "bin_start": 5,
+        "bin_end": 9,
+        "count": 4
+      },
+      {
+        "bin_start": 10,
+        "bin_end": 14,
+        "count": 2
+      },
+      {
+        "bin_start": 15,
+        "bin_end": 19,
+        "count": 2
+      },
+      {
+        "bin_start": 20,
+        "bin_end": 24,
+        "count": 0
+      },
+      {
+        "bin_start": 25,
+        "bin_end": 29,
+        "count": 0
+      },
+      {
+        "bin_start": 30,
+        "bin_end": 34,
+        "count": 0
+      },
+      {
+        "bin_start": 35,
+        "bin_end": 39,
+        "count": 0
+      },
+      {
+        "bin_start": 40,
+        "bin_end": 44,
+        "count": 0
+      },
+      {
+        "bin_start": 45,
+        "bin_end": 49,
+        "count": 0
+      },
+      {
+        "bin_start": 50,
+        "bin_end": 54,
+        "count": 0
+      },
+      {
+        "bin_start": 55,
+        "bin_end": 59,
+        "count": 1
+      }
+    ]
+  },
+  "Immunization": {
+    "mean": 0.79,
+    "median": 0,
+    "min": 0,
+    "max": 26,
+    "histogram": [
+      {
+        "bin_start": 0,
+        "bin_end": 4,
+        "count": 95
+      },
+      {
+        "bin_start": 5,
+        "bin_end": 9,
+        "count": 2
+      },
+      {
+        "bin_start": 10,
+        "bin_end": 14,
+        "count": 1
+      },
+      {
+        "bin_start": 15,
+        "bin_end": 19,
+        "count": 0
+      },
+      {
+        "bin_start": 20,
+        "bin_end": 24,
+        "count": 1
+      },
+      {
+        "bin_start": 25,
+        "bin_end": 29,
+        "count": 1
+      }
+    ]
+  },
+  "MedicationStatement": {
+    "mean": 0.47,
+    "median": 0,
+    "min": 0,
+    "max": 19,
+    "histogram": [
+      {
+        "bin_start": 0,
+        "bin_end": 4,
+        "count": 97
+      },
+      {
+        "bin_start": 5,
+        "bin_end": 9,
+        "count": 1
+      },
+      {
+        "bin_start": 10,
+        "bin_end": 14,
+        "count": 0
+      },
+      {
+        "bin_start": 15,
+        "bin_end": 19,
+        "count": 2
+      }
+    ]
+  },
+  "DiagnosticReport": {
+    "mean": 0.45,
+    "median": 0,
+    "min": 0,
+    "max": 26,
+    "histogram": [
+      {
+        "bin_start": 0,
+        "bin_end": 4,
+        "count": 97
+      },
+      {
+        "bin_start": 5,
+        "bin_end": 9,
+        "count": 1
+      },
+      {
+        "bin_start": 10,
+        "bin_end": 14,
+        "count": 1
+      },
+      {
+        "bin_start": 15,
+        "bin_end": 19,
+        "count": 0
+      },
+      {
+        "bin_start": 20,
+        "bin_end": 24,
+        "count": 0
+      },
+      {
+        "bin_start": 25,
+        "bin_end": 29,
+        "count": 1
+      }
+    ]
+  },
+  "Observation-imaging": {
+    "mean": 0.0,
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "histogram": [
+      {
+        "bin_start": 0,
+        "bin_end": 4,
+        "count": 100
+      }
+    ]
+  },
+  "Procedure": {
+    "mean": 0.4,
+    "median": 0,
+    "min": 0,
+    "max": 10,
+    "histogram": [
+      {
+        "bin_start": 0,
+        "bin_end": 4,
+        "count": 95
+      },
+      {
+        "bin_start": 5,
+        "bin_end": 9,
+        "count": 4
+      },
+      {
+        "bin_start": 10,
+        "bin_end": 14,
+        "count": 1
+      }
+    ]
+  },
+  "Observation-vital-signs": {
+    "mean": 2.17,
+    "median": 0,
+    "min": 0,
+    "max": 54,
+    "histogram": [
+      {
+        "bin_start": 0,
+        "bin_end": 4,
+        "count": 93
+      },
+      {
+        "bin_start": 5,
+        "bin_end": 9,
+        "count": 0
+      },
+      {
+        "bin_start": 10,
+        "bin_end": 14,
+        "count": 1
+      },
+      {
+        "bin_start": 15,
+        "bin_end": 19,
+        "count": 2
+      },
+      {
+        "bin_start": 20,
+        "bin_end": 24,
+        "count": 0
+      },
+      {
+        "bin_start": 25,
+        "bin_end": 29,
+        "count": 1
+      },
+      {
+        "bin_start": 30,
+        "bin_end": 34,
+        "count": 0
+      },
+      {
+        "bin_start": 35,
+        "bin_end": 39,
+        "count": 1
+      },
+      {
+        "bin_start": 40,
+        "bin_end": 44,
+        "count": 0
+      },
+      {
+        "bin_start": 45,
+        "bin_end": 49,
+        "count": 0
+      },
+      {
+        "bin_start": 50,
+        "bin_end": 54,
+        "count": 2
+      }
+    ]
+  },
+  "Observation-laboratory": {
+    "mean": 2.66,
+    "median": 0,
+    "min": 0,
+    "max": 208,
+    "histogram": [
+      {
+        "bin_start": 0,
+        "bin_end": 4,
+        "count": 97
+      },
+      {
+        "bin_start": 5,
+        "bin_end": 9,
+        "count": 0
+      },
+      {
+        "bin_start": 10,
+        "bin_end": 14,
+        "count": 1
+      },
+      {
+        "bin_start": 15,
+        "bin_end": 19,
+        "count": 0
+      },
+      {
+        "bin_start": 20,
+        "bin_end": 24,
+        "count": 0
+      },
+      {
+        "bin_start": 25,
+        "bin_end": 29,
+        "count": 0
+      },
+      {
+        "bin_start": 30,
+        "bin_end": 34,
+        "count": 0
+      },
+      {
+        "bin_start": 35,
+        "bin_end": 39,
+        "count": 0
+      },
+      {
+        "bin_start": 40,
+        "bin_end": 44,
+        "count": 1
+      },
+      {
+        "bin_start": 45,
+        "bin_end": 49,
+        "count": 0
+      },
+      {
+        "bin_start": 50,
+        "bin_end": 54,
+        "count": 0
+      },
+      {
+        "bin_start": 55,
+        "bin_end": 59,
+        "count": 0
+      },
+      {
+        "bin_start": 60,
+        "bin_end": 64,
+        "count": 0
+      },
+      {
+        "bin_start": 65,
+        "bin_end": 69,
+        "count": 0
+      },
+      {
+        "bin_start": 70,
+        "bin_end": 74,
+        "count": 0
+      },
+      {
+        "bin_start": 75,
+        "bin_end": 79,
+        "count": 0
+      },
+      {
+        "bin_start": 80,
+        "bin_end": 84,
+        "count": 0
+      },
+      {
+        "bin_start": 85,
+        "bin_end": 89,
+        "count": 0
+      },
+      {
+        "bin_start": 90,
+        "bin_end": 94,
+        "count": 0
+      },
+      {
+        "bin_start": 95,
+        "bin_end": 99,
+        "count": 0
+      },
+      {
+        "bin_start": 100,
+        "bin_end": 104,
+        "count": 0
+      },
+      {
+        "bin_start": 105,
+        "bin_end": 109,
+        "count": 0
+      },
+      {
+        "bin_start": 110,
+        "bin_end": 114,
+        "count": 0
+      },
+      {
+        "bin_start": 115,
+        "bin_end": 119,
+        "count": 0
+      },
+      {
+        "bin_start": 120,
+        "bin_end": 124,
+        "count": 0
+      },
+      {
+        "bin_start": 125,
+        "bin_end": 129,
+        "count": 0
+      },
+      {
+        "bin_start": 130,
+        "bin_end": 134,
+        "count": 0
+      },
+      {
+        "bin_start": 135,
+        "bin_end": 139,
+        "count": 0
+      },
+      {
+        "bin_start": 140,
+        "bin_end": 144,
+        "count": 0
+      },
+      {
+        "bin_start": 145,
+        "bin_end": 149,
+        "count": 0
+      },
+      {
+        "bin_start": 150,
+        "bin_end": 154,
+        "count": 0
+      },
+      {
+        "bin_start": 155,
+        "bin_end": 159,
+        "count": 0
+      },
+      {
+        "bin_start": 160,
+        "bin_end": 164,
+        "count": 0
+      },
+      {
+        "bin_start": 165,
+        "bin_end": 169,
+        "count": 0
+      },
+      {
+        "bin_start": 170,
+        "bin_end": 174,
+        "count": 0
+      },
+      {
+        "bin_start": 175,
+        "bin_end": 179,
+        "count": 0
+      },
+      {
+        "bin_start": 180,
+        "bin_end": 184,
+        "count": 0
+      },
+      {
+        "bin_start": 185,
+        "bin_end": 189,
+        "count": 0
+      },
+      {
+        "bin_start": 190,
+        "bin_end": 194,
+        "count": 0
+      },
+      {
+        "bin_start": 195,
+        "bin_end": 199,
+        "count": 0
+      },
+      {
+        "bin_start": 200,
+        "bin_end": 204,
+        "count": 0
+      },
+      {
+        "bin_start": 205,
+        "bin_end": 209,
+        "count": 1
+      }
+    ]
+  },
+  "Observation-procedure": {
+    "mean": 0.0,
+    "median": 0,
+    "min": 0,
+    "max": 0,
+    "histogram": [
+      {
+        "bin_start": 0,
+        "bin_end": 4,
+        "count": 100
+      }
+    ]
+  }
+}
