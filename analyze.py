@@ -14,35 +14,29 @@ def parse_arguments():
 
 
 def process_directory(directory):
-    """Given an `S4S` directory within a patient directory, determines the most
-    recent set of resources/searchsets using the timestamp in the manifest file,
-    then collects total number of resources returned in each searchset, whose
-    JSON files are present in the directory. Returns a mapping of resource type
-    to number of returned results.
+    """Given a `SyncForScience` directory within a patient directory, collects
+    total number of resources returned in each searchset by counting unique
+    resource IDs for each JSON file present in the directory tree. Returns a
+    mapping of resource type to number of returned results.
     """
-    timestamps = list()
-    for subdir in os.listdir(directory):
-        try:
-            with open(f'{directory}/{subdir}/manifest.json') as f:
-                timestamps.append((json.load(f)['timestamp'], subdir))
-        except FileNotFoundError:
-            continue
-    _, latest_dir = max(timestamps)
-    
-    counts = dict()
-    for data_file in os.listdir(f'{directory}/{latest_dir}'):
-        if data_file in ('manifest.json', 'Patient.json'):
-            continue  # do nothing with Patient.json for now
-        try:
-            with open(f'{directory}/{latest_dir}/{data_file}') as f:
-                data = json.load(f)
-        except ValueError:
-            continue  # any non-JSON files will be ignored
+    uniques = defaultdict(set)
+    for subdirectory in os.listdir(directory):
+        for data_file in os.listdir(f'{directory}/{subdirectory}'):
+            if data_file in ('log.json', 'PATIENT_DEMOGRAPHICS.json'):
+                continue  # do nothing with patient demographics for now
+            try:
+                with open(f'{directory}/{subdirectory}/{data_file}') as f:
+                    data = json.load(f)
+            except ValueError:
+                continue  # any non-JSON files will be ignored
 
-        # trim `.json`
-        counts[data_file[:-5]] = data['total']
+            # update set of unique resource IDs
+            # trim `.json` from the filename for the key
+            uniques[data_file[:-5]].update(
+                entry['resource']['id'] for entry in data['entry']
+            )
 
-    return counts
+    return {k: len(v) for k, v in uniques.items()}
 
 
 def main():
@@ -55,7 +49,7 @@ def main():
     # mapping of resource type to list of resource counts for each patient
     total_counts = defaultdict(list)
 
-    for directory in glob.glob(f'{args.path}/*/S4S/'):
+    for directory in glob.glob(f'{args.path}/*/SyncForScience/'):
         dir_counts = process_directory(directory)
         for type_, count in dir_counts.items():
             total_counts[type_].append(count)
