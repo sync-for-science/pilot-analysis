@@ -1,7 +1,6 @@
 from collections import Counter, defaultdict
 import json
 import os
-import time
 from uuid import uuid4
 
 import requests
@@ -42,15 +41,19 @@ def find_reference_properties(obj, resource_type):
 
 class FHIRFetcher:
     def __init__(self):
-        self.manifest = {'timestamp': int(time.time()), 'fetches': list()}
+        self.manifest = {'source': 'HAPI FHIR', 'query': list()}
 
     def fetch(self, path, filename):
-        data = requests.get(f'{FHIR_BASE}/{path}').json()
-        self.manifest['fetches'].append({
-            'api_call': path,
-            'filename': filename
+        response = requests.get(f'{FHIR_BASE}/{path}')
+        self.manifest['query'].append({
+            'request': path,
+            'response': filename,
+            'status': response.status_code
         })
-        return data
+        try:
+            return response.json()
+        except:
+            return None
 
 
 if __name__ == '__main__':
@@ -65,16 +68,16 @@ if __name__ == '__main__':
     # pprint.pprint(results)
 
     links = {
-        'Condition': 'patient',
-        'DiagnosticReport': 'subject',
-        'Encounter': 'patient',
-        'Immunization': 'patient',
-        'MedicationStatement': 'patient',
-        'Observation': 'subject',
-        'Procedure': 'subject'
+        'AllergyIntolerance': ('ALLERGY_INTOLERANCE.json', 'patient'),
+        'Procedure': ('PROCEDURE.json', 'subject'),
+        'Immunization': ('IMMUNIZATION.json', 'patient')
     }
 
-    observation_cats = ['social-history', 'vital-signs', 'imaging', 'laboratory', 'procedure', 'survey', 'exam', 'therapy']
+    observation_cats = [
+        ('SMOKING_STATUS.json', 'social-history'),
+        ('LAB.json', 'laboratory'),
+        ('VITAL.json', 'vital-signs')
+    ]
 
     patients = set()
 
@@ -83,7 +86,7 @@ if __name__ == '__main__':
         if resource_type not in links:
             continue
 
-        link_name = links[resource_type]
+        filename, link_name = links[resource_type]
         ref_value = entry[link_name]['reference']
         if not ref_value.startswith('Patient/'):
             continue
@@ -93,17 +96,17 @@ if __name__ == '__main__':
             break
 
     for patient in patients:
-        directory = os.path.join(DATA_DIR, patient, 'S4S', str(uuid4()))
+        directory = os.path.join(DATA_DIR, patient, 'SyncForScience', str(uuid4()))
         os.makedirs(directory, exist_ok=True)
 
         fetcher = FHIRFetcher()
-        paths = [('Patient.json', f'Patient/{patient}')]
-        paths.extend((f'{k}.json', f'{k}?{v}=Patient/{patient}') for k, v in links.items())
-        paths.extend((f'Observation-{cat}.json', f'Observation?category={cat}&subject=Patient/{patient}') for cat in observation_cats)
+        paths = [('PATIENT_DEMOGRAPHICS.json', f'Patient/{patient}')]
+        paths.extend((filename, f'{k}?{link_name}=Patient/{patient}') for k, (filename, link_name) in links.items())
+        paths.extend((filename, f'Observation?category={cat_name}&subject=Patient/{patient}') for filename, cat_name in observation_cats)
         for filename, path in paths:
             data = fetcher.fetch(path, filename)
             with open(os.path.join(directory, filename), 'w') as f:
                 json.dump(data, f)
 
-        with open(os.path.join(directory, 'manifest.json'), 'w') as f:
+        with open(os.path.join(directory, 'log.json'), 'w') as f:
             json.dump(fetcher.manifest, f)
