@@ -1,3 +1,5 @@
+from __future__ import division
+
 import argparse
 from collections import Counter, defaultdict
 import glob
@@ -7,8 +9,19 @@ import os
 
 def parse_arguments():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-p', '--path', help='Directory containing subdirectories for each patient')
-    parser.add_argument('-b', '--bin-size', help='Histogram bin size', default=5, type=int)
+    parser.add_argument(
+        '-p',
+        '--path',
+        required=True,
+        help='Directory containing subdirectories for each patient'
+    )
+    parser.add_argument(
+        '-b',
+        '--bin-size',
+        help='Histogram bin size',
+        default=5,
+        type=int
+    )
 
     return parser.parse_args()
 
@@ -20,15 +33,18 @@ def process_directory(directory):
     mapping of resource type to number of returned results.
     """
     uniques = defaultdict(set)
-    for subdirectory in os.listdir(directory):
-        for data_file in os.listdir(f'{directory}/{subdirectory}'):
+    for path, _, files in os.walk(directory):
+        for data_file in files:
             if data_file in ('log.json', 'PATIENT_DEMOGRAPHICS.json'):
                 continue  # do nothing with patient demographics for now
             try:
-                with open(f'{directory}/{subdirectory}/{data_file}') as f:
+                with open(os.path.join(path, data_file)) as f:
                     data = json.load(f)
             except ValueError:
                 continue  # any non-JSON files will be ignored
+
+            if 'entry' not in data:
+                data['entry'] = list()  # no data
 
             # update set of unique resource IDs
             # trim `.json` from the filename for the key
@@ -49,7 +65,8 @@ def main():
     # mapping of resource type to list of resource counts for each patient
     total_counts = defaultdict(list)
 
-    for directory in glob.glob(f'{args.path}/*/SyncForScience/'):
+    search_path = os.path.join(args.path, '*', 'SyncForScience')
+    for directory in glob.glob(search_path):
         dir_counts = process_directory(directory)
         for type_, count in dir_counts.items():
             total_counts[type_].append(count)
