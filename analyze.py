@@ -8,6 +8,20 @@ import logging
 import os
 
 
+FILE_TYPE_MAPPING = {
+    'ALLERGY_INTOLERANCE': 'AllergyIntolerance',
+    'DOCUMENT': 'DocumentReference',
+    'IMMUNIZATION': 'Immunization',
+    'LAB': 'Observation',
+    'MEDICATION_ORDER': 'MedicationOrder',
+    'MEDICATION_STATEMENT': 'MedicationStatement',
+    'PROBLEMS': 'Condition',
+    'PROCEDURE': 'Procedure',
+    'SMOKING_STATUS': 'Observation',
+    'VITAL': 'Observation'
+}
+
+
 def parse_arguments():
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -65,12 +79,14 @@ def process_directory(directory):
             if 'entry' not in data:
                 data['entry'] = list()  # no data
 
-            # update set of unique resource IDs
             # trim `.json` from the filename for the key
-            uniques[data_file[:-5]].update(
+            type_ = data_file[:-5]
+
+            # update set of unique resource IDs of the correct ResourceType
+            uniques[type_].update(
                 entry['resource']['id']
                 for entry in data['entry']
-                if 'id' in entry['resource']  # OperationOutcome might not get IDs
+                if entry['resource']['resourceType'] == FILE_TYPE_MAPPING[type_]
             )
 
     return {k: len(v) for k, v in uniques.items()}
