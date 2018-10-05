@@ -68,7 +68,9 @@ def process_directory(directory):
             # update set of unique resource IDs
             # trim `.json` from the filename for the key
             uniques[data_file[:-5]].update(
-                entry['resource']['id'] for entry in data['entry']
+                entry['resource']['id']
+                for entry in data['entry']
+                if 'id' in entry['resource']  # OperationOutcome might not get IDs
             )
 
     return {k: len(v) for k, v in uniques.items()}
