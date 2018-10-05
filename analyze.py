@@ -4,6 +4,7 @@ import argparse
 from collections import Counter, defaultdict
 import glob
 import json
+import logging
 import os
 
 
@@ -22,6 +23,15 @@ def parse_arguments():
         default=5,
         type=int
     )
+    parser.add_argument(
+        '-d',
+        '--debug',
+        help='Show debug messages',
+        action='store_const',
+        dest='log_level',
+        const=logging.DEBUG,
+        default=logging.WARNING
+    )
 
     return parser.parse_args()
 
@@ -32,15 +42,24 @@ def process_directory(directory):
     resource IDs for each JSON file present in the directory tree. Returns a
     mapping of resource type to number of returned results.
     """
+    logging.debug('Processing {}'.format(directory))
+
     uniques = defaultdict(set)
     for path, _, files in os.walk(directory):
         for data_file in files:
             if data_file in ('log.json', 'PATIENT_DEMOGRAPHICS.json'):
+                logging.debug('Skipping {}/{}'.format(path, data_file))
                 continue  # do nothing with patient demographics for now
             try:
                 with open(os.path.join(path, data_file)) as f:
                     data = json.load(f)
+                    logging.debug(
+                        'Parsed {}/{} as JSON'.format(path, data_file)
+                    )
             except ValueError:
+                logging.debug(
+                    '{}/{} could not be parsed as JSON'.format(path, data_file)
+                )
                 continue  # any non-JSON files will be ignored
 
             if 'entry' not in data:
@@ -61,6 +80,7 @@ def main():
     median, max, min, and histogram data.
     """
     args = parse_arguments()
+    logging.basicConfig(level=args.log_level)
 
     # mapping of resource type to list of resource counts for each patient
     total_counts = defaultdict(list)
