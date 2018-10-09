@@ -50,6 +50,35 @@ def parse_arguments():
     return parser.parse_args()
 
 
+def find_resource_files(directory):
+    """Yield tuples of resource type (e.g. `SMOKING_STATUS`) to full path of
+    the resource results file obtained from the log files in each subdirectory.
+    Resource type is determined by characters from the filename up to the first
+    period.
+    """
+    for subdir in os.listdir(directory):
+        path = os.path.join(directory, subdir)
+        if not os.path.isdir(path):
+            continue
+        try:
+            with open(os.path.join(path, 'log.json')) as f:
+                log_data = json.load(f)
+            logging.debug('Parsed log file in {}'.format(path))
+            for query in log_data['query']:
+                if query['status'] != 200:
+                    continue
+                filename = query['response']
+                type_ = filename[:filename.index('.')]
+                logging.debug('Found {} of type {}'.format(
+                    os.path.join(path, filename), type_
+                ))
+                yield type_, os.path.join(path, filename)
+        except (IOError, ValueError, KeyError):
+            # ignore if log file doesn't exist, doesn't parse as JSON or the
+            # JSON doesn't have the keys we expect
+            continue
+
+
 def process_directory(directory):
     """Given a `SyncForScience` directory within a patient directory, collects
     total number of resources returned in each searchset by counting unique
@@ -59,35 +88,30 @@ def process_directory(directory):
     logging.debug('Processing {}'.format(directory))
 
     uniques = defaultdict(set)
-    for path, _, files in os.walk(directory):
-        for data_file in files:
-            if data_file in ('log.json', 'PATIENT_DEMOGRAPHICS.json'):
-                logging.debug('Skipping {}/{}'.format(path, data_file))
-                continue  # do nothing with patient demographics for now
-            try:
-                with open(os.path.join(path, data_file)) as f:
-                    data = json.load(f)
-                    logging.debug(
-                        'Parsed {}/{} as JSON'.format(path, data_file)
-                    )
-            except ValueError:
+    for type_, path in find_resource_files(directory):
+        if type_ == 'PATIENT_DEMOGRAPHICS':
+            logging.debug('Skipping {}'.format(path))
+            continue  # do nothing with patient demographics for now
+        try:
+            with open(path) as f:
+                data = json.load(f)
                 logging.debug(
-                    '{}/{} could not be parsed as JSON'.format(path, data_file)
+                    'Parsed {} as JSON'.format(path)
                 )
-                continue  # any non-JSON files will be ignored
-
-            if 'entry' not in data:
-                data['entry'] = list()  # no data
-
-            # trim `.json` from the filename for the key
-            type_ = data_file[:-5]
-
-            # update set of unique resource IDs of the correct ResourceType
-            uniques[type_].update(
-                entry['resource']['id']
-                for entry in data['entry']
-                if entry['resource']['resourceType'] == FILE_TYPE_MAPPING[type_]
+        except ValueError:
+            logging.debug(
+                '{} could not be parsed as JSON'.format(path)
             )
+            continue  # any non-JSON files will be ignored
+        if 'entry' not in data:
+            data['entry'] = list()  # no data
+
+        # update set of unique resource IDs of the correct ResourceType
+        uniques[type_].update(
+            entry['resource']['id']
+            for entry in data['entry']
+            if entry['resource']['resourceType'] == FILE_TYPE_MAPPING[type_]
+        )
 
     return {k: len(v) for k, v in uniques.items()}
 
